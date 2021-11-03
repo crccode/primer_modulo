@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <report id="report_dailyReportExternalayout" 
+          string="Daily External Report" 
+          model="libros"
+          <!-- "qweb-pdf" genera directamente el pdf y "qweb-html" antes de generar el pdf muestra el diseño -->
+          report_type="qweb-html"
+          name="primer_modulo.dailyReportExternalayout"
+          menu="True" 
+          print_report_name="'Report %s %s of the covid-19'"
+         /> 
+         
+        <template id="dailyReportExternalayout" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-size:18px">
+                                <div class="row">
+                                    <div class="col-md-12" align="center">
+                                        <h2>Reporte CVID-19 </h2>
+                                        <h4>Versión Registro Manual</h4>
+                                        <h5>Fuente </h5>
+                                        <h5>País </h5>
+                                    </div>
+                                </div>
+                            <div class="row mt8">
+                                    <div class="col-md-12" >
+                                            Infected:  %
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                        Recovered: %
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                        Deseaced:  %
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" align="center">
+                                        Total accumulated up to the date of registration.
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                        Total Infected:
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                        Total Recovered: <span t-field="o.name" />
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                        Total Deseaced: <span t-field="o.editorial" />
+                                    </div>
+                                </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        
+    </data>
+</odoo>

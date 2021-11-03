@@ -1,0 +1,75 @@
+<?xml version="1.0"  ?>
+<odoo>
+    <!-- CREAMOS LA VISTA FORMULARIO id  -->
+    <record id="libros_form_view" model="ir.ui.view">
+        <!--  model ="ir.ui.view" en aqui es donde se guardan las vistas  -->
+        <field name="name">libro.formulario.view</field>
+        <!--  "libro.formulario.view" este nombre es cualquiera poner el de arriba  -->
+        <field name="model">libros</field>
+        <!--  En este campo colocamos del nombre del modelo de la tabla de la BD "libros" -->
+        <field name="arch" type="xml">
+            <form string="Libro">
+                <!-- BARRA DE ESTADO ARRIBA DE LA HOJA  -->
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':1}"/>
+                </header>
+                <!-- Colocamos una hoja y dentro los grupos  -->
+                <sheet>
+                    <group> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
+                        <group> <!-- Creamos un sub grupo de 6 columnas    -->
+                            <!-- usaremos widget podemos usar uno de los dos  height="50" o class="oe_avatar"  -->
+                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="name"/>
+                            <field name="editorial"/>
+                            <field name="isbn"/>
+                            <field name="autor_id"/>
+                            <field name="lastname_autor"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+                <!-- MDOULO MAIL   -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- AGREGAMOS LA VISTA TREE  se guardara en el modelo "ir.ui.view" -->
+    <!-- Nos muestra todos los camopos de un tabla  -->
+    <record id="libros_tree_view" model="ir.ui.view">
+        <field name="name">libros.tree.view</field>
+        <!--  Este nombre puede cambiar "libros.tree.view" pero poner el de arriba -->
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <!-- Creamos la vista tree y colocamos colores decorator  -->
+            <tree string="Libros"  decoration-success="state =='published'">
+                <field name="name"/>
+                <field name="editorial"/>
+                <field name="isbn"/>
+                <field name="autor_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state =='published'"/>
+                <!-- decoration-danger son los colores  -->
+            </tree>
+        </field>
+    </record>
+
+     <!-- CREAMOS LA VISTA KANBAN , EN EL MENU PRINCIPAL TAMBIEN  -->
+
+
+     <!-- CREAMOS LA VISTA BUSQUEDA , permite buscar por libro o autor  -->
+    <record id="libros_search_view" model="ir.ui.view">
+        <field name="name">libros.search.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre del libro"/>
+                <field name="autor_id" string="Nombre del autor"/>
+            </search>
+        </field>
+    </record>
+    <!-- Añade este archivo al manifiest   -->
+</odoo>
