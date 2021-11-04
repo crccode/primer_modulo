@@ -17,5 +17,5 @@
 	Realizamos Push a nuestro "branch main" o ctrl + P
 	
 # Descargar los cambios realizado PULL
-	
+	ctrl+shift+p o PULL
 
