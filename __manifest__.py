@@ -10,11 +10,12 @@
 	# Instlamaos el modlo mail para tener registro de las modificaciones
 	'depends': ['mail', 'base'],
 	'data': [
+		'security/libreria_security.xml',
+		#'security/ir.model.access.csv'
 		'views/menu_view.xml',
 		'views/libros_view.xml',
-		'report/daily_external_layout.xml',
-		'security/libreria_security.xml',
-		'security/ir.model.access.csv'
+		#'report/daily_external_layout.xml',
+
 	],
 
 }
