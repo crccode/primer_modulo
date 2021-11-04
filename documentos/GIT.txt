@@ -11,7 +11,11 @@
 3 Verificando en GIT DESKTOP 
 	-> Repository -> View on Github
 	
-# Realizar cambios 
+# Realizar cambios PUSH
 	Al hacer un cambio en algun archivo automaticamente Git hub Desktop lo reconoce y lo pone de color verde
 	Se debe realizar un nuevo commit con el cambio
-	Realizamos Push a nuestro "branch main"
+	Realizamos Push a nuestro "branch main" o ctrl + P
+	
+# Descargar los cambios realizado PULL
+	
+
