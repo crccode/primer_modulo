@@ -1,1 +1,5 @@
 # GIT HUB DESKTOP
+1 -> File -> new repository -> Name (colocar el nombre del proyecto)
+-> Local path (Seleccionar la carpeta en donde esta el proyecto)
+-> Include repository README -> create repository
+2 -> Published repository
