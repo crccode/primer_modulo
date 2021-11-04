@@ -1,0 +1,47 @@
+# NITRO PRO Desactivar el antivirus
+LINK	https://mega.nz/file/wGwXlL6T#P8SbbJ4jdI0bSdvCctgtRVG4LHlNebEqi9KZ3Amc9_k
+LINK VIDEO	https://www.youtube.com/watch?v=4HdceWuHOBQ
+Una ves instalado copiar el crak en donde se instalo y ejecutarlo
+
+# ADOBE PHOTOSHOP Ya viene con la licencia el instalador Desactivar el internet
+LINK	http://www.mediafire.com/file/0nxgia1jsldby9c/Adobe_Photoshop_2021_-_Zona_Quantum.rar/file
+LINK VIDEO	https://www.youtube.com/watch?v=9OHxNf6Rlm0
+
+# ZIP
+https://7-zip.es/file?v=1900&a=7z1900-x64.exe
+
+# HIREN BOOT
+LINK	https://www.hirensbootcd.org/files/HBCD_PE_x64.iso
+
+# VISIO + PROJECT No necesita desactivar el antivirus ni el internet
+LINK	https://mega.nz/file/TI9l0AyQ#AFCTvYLvrx8m0qPBNgLej0SgyuxGLIx9Dd3lU3GhVig
+
+$ ADOBE CREATER
+LINK	https://download2388.mediafire.com/unkcfb68mhyg/0lsfkjvtm481it6/Adobe.Acrobat.Pro.DC.v2021.rar
+
+# AUTOCAD 2021
+LINK	https://www.mediafire.com/file/2j2wpc4ucjxfad6/WIN_ACD_2K21_AP_ZNT.rar/file
+CONTRASEÑA: www.artistapirata.com
+
+# REVIT 2021
+LINK https://mega.nz/file/SU9WGDLZ#ViOkdgRAKsffWo6AANAZdcPc83Z5ZnbkI9aTNL_Q8yQ
+CONTRASEÑA: www.artistapirata.com
+
+# DESACTIVAR EL INTERNET MEDIANTE FIREWALL
+LINK	https://www.xataka.com/basics/como-bloquear-el-acceso-a-internet-a-una-aplicacion-con-el-firewall-de-windows
+WEB https://www.artistapirata.com/
+
+# FINAL CUT PRO MAC para BigSur y Catalina
+LINK	https://www.mediafire.com/file/hpvb5hz08h5k1mv/FCPX_10.6_AP.ZNT.dmg/file
+TUTORIAL	https://www.artistapirata.com/final-cut-pro-x-10-4-8-mac-compatible-catalina/
+CONTRASEÑA: www.artistapirata.com
+
+	INSTALACION APP
+
+# NUMERO DE SERIE HDD SDD
+> wmic diskdrive get serialnumber
+
+2112E58CD898
+50026B778416FA48
+WXD1A484Z7KP
+

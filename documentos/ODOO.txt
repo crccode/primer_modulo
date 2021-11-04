@@ -1,0 +1,82 @@
+C:\Program Files\Odoo 14.0.20211014\server\odoo\addons\hola
+# Ingresar en modo desarrollador
+	http://localhost:8069/web?debug=1/#action=35&model=ir.module.module&view_type=kanban&cids=&menu_id=5
+__manyfest__.py En este archivo se va a declarar todas las vistas, las librerias para que nuestro modulo funcione
+
+# Ingreasar al login para seleccionar BD
+	http://localhost:8069/web
+# Archivo odo.conf
+	addons_path  En aqui es donde pondremos la ruta de nuestros addons
+Se recomienda crear otra carpeta donde estaran nuestros modulos "maddons"
+	addons_path = C:\Program Files\Odoo 14.0.20211014\server\odoo\addons
+	addons_path = C:\Program Files\Odoo 14.0.20211014\server\odoo\addons, C:\Program Files\Odoo 14.0.20211014\server\odoo\maddons
+
+
+-> crear Directory security crear file "ir.model.access.csv"
+-> crear Package Puthon models 
+-> crear Directory views
+-> crear Directory security Creamos un grupo de usuario y damos acceso para que pueda ver los modulos
+
+-----------------------------------------------------------------------------VISTA---------------------------------------------------------------------------
+   <!-- CREAMOS LA VISTA KANBAN , EN EL MENU PRINCIPAL TAMBIEN  -->
+    <record id="libros_kanban_view" model="ir.ui.view">
+        <field name="name">libros.kanban.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="editorial"/>
+                <field name="isbn"/>
+                <field name="autor_id"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('libros','image',record.id.raw_value)" alt="Image"/>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+
+            </kanban>
+        </field>
+    </record>
+--------------------------------------------------------------------------pycharm
+# Editar la configuracion Run/Debug para que ejecute mi  modulo 
+	-c "C:\Program Files\Odoo 14.0.20211014\server\odoo.conf" -u primer_modulo
+# En odoo buscar mi modulo y seleccionarlo como favorito 
+# Usar un modulo Debes colocarlo en dependencias del archivo manifest
+ heredamos en el modelo
+ Nuestra vista agregamos las funcionalidades descpues de la etiqueta </sheet>
+
+decoratiom-success="state == 'published'" decoration-info="state == 'draft'"
+
+@api.depends('name')
+
+
+
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+{
+	'name': 'Curso de programacion oddo',
+	'summary': 'Invoices & Payments',
+	'author': 'christian',
+	'category': 'General',
+	'application': True,
+	'version': '1.2',
+	# Instlamaos el modlo mail para tener registro de las modificaciones
+	'depends': ['mail'],
+	'data': [
+		'views/menu_view.xml',
+		'views/libros_view.xml',
+		'security/libreria_security.xml',
+		'security/ir.model.access.csv'
+	],
+
+}
+ <group  col='3'>
+widget="image" height="50"
+
+
+

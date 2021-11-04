@@ -1,0 +1,41 @@
+Exiten 3 tipo de usuarios(cliente, trabajado y servicio), de cada usuario puede ser un (Administrador o Uusuario)					
+
+		ADMINISTRAR USUARIOS
+
+<odoo>
+     <record id="modulo_sportservice_category" model="ir.module.category">
+        <field name ="name">SportService</field>
+    </record>
+<!--    CREARMOS EL GRUPO DE USUARIO -->
+    <record id ="sportservice_group_user" model="res.groups">
+        <field name="name">Users</field>
+        <field name="category_id" ref="modulw_sportservice_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+<!--    CREARMOS EL GRUPO DE ADMINISTRADOR -->
+    <record id ="sportservice_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_sportservice_category"/>
+        <field name="implied_ids" eval="[(4, ref('sportservice_group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')),
+		(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
+				CSV
+
+
+ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create, perm_unlink
+access_cliente_user , clienteUser , model_sportservice_cliente ,
+sportservice_group_user,1,0,0,0
+ access_cliente_manager, clienteManager, model_sportservice_cliente,
+spor tservice_group_manager , 1 , 1 , 1 , 1
+ access_trabajador_user,trabajadorUser, model_sportservice_trabajador ,
+sportservice_group_user , 1 , 0 , 0 , 0
+ access_trabajador_manager , trabajadorManager, model_sportservice_trabajador,
+sportservice_group_manager, 1 , 1 , 1 , 1
+ access_servicio_user, servicioUser,model_sportservice_servicio,
+sportservice_group_user, 1 , 0 , 0 , 0
+ access_servicio_manager,servicioManager, model_sportservice_servicio ,
+sportservice_group_manager , 1 , 1 , 1 , 1
