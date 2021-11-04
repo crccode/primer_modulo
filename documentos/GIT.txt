@@ -1,4 +1,4 @@
-cls# GIT HUB DESKTOP
+# GIT HUB DESKTOP
 1 Crear un nuevo repositorio, seleccionamos el proyecto y hacemso un commit 
 	-> File -> new repository -> Name (colocar el nombre del proyecto)
 	-> Local path (Seleccionar la carpeta en donde esta el proyecto)
@@ -16,6 +16,6 @@ cls# GIT HUB DESKTOP
 	Se debe realizar un nuevo commit con el cambio
 	Realizamos Push a nuestro "branch main" o ctrl + P
 	
-# Descargar los cambios realizado
+# Descargar los cambios realizado PULL
 	
 
