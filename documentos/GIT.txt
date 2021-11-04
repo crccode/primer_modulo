@@ -1,5 +1,17 @@
 # GIT HUB DESKTOP
-1 -> File -> new repository -> Name (colocar el nombre del proyecto)
--> Local path (Seleccionar la carpeta en donde esta el proyecto)
--> Include repository README -> create repository
-2 -> Published repository
+1 Crear un nuevo repositorio, seleccionamos el proyecto y hacemso un commit 
+	-> File -> new repository -> Name (colocar el nombre del proyecto)
+	-> Local path (Seleccionar la carpeta en donde esta el proyecto)
+	-> Include repository README -> create repository
+	-> Seleccionar Commit to main (llenar etiqueta y una descripcion del comit)
+2 Subimos el proyecto a Git hub
+	-> Published repository -> Git hub .com
+	Nos aparecera el nombre del repositorio y nos da la posibilidad de mantener public o private nuestro proyecto.
+	-> Públish repository 
+3 Verificando en GIT DESKTOP 
+	-> Repository -> View on Github
+	
+# Realizar cambios 
+	Al hacer un cambio en algun archivo automaticamente Git hub Desktop lo reconoce y lo pone de color verde
+	Se debe realizar un nuevo commit con el cambio
+	Realizamos Push a nuestro "branch main"
