@@ -1,0 +1,27 @@
+https://www.youtube.com/watch?v=hWglK8nWh60
+
+# Indicar la version del git 
+git version
+# Para vincular con el repositorio local decirle que vamos a trabajar con git
+git init 
+# Nos muestra si los archivos es "M" se modificaron, A añade al git para su seguimiento, o eliminaron, ? significa que no se esta haciendo seguimiento
+git status -s
+# Lo agrega al local
+git add index.html     hace seguimiento de un solo archivo
+git add .     hace seguimiento de todos los archivos
+git status -s        Vemos que se añadio "A"
+# Commit permite hacer una version de nuestro archivo "A" al git
+git commit -m "Agregamos archivo nuevo"
+
+2 Revertir cambios
+# Muestra todos los commit que hemos hecho
+git log --oneline
+# Para revertir un cambio toman el identificador ejm "9872as" 
+git reset --hard 9872as
+git add .
+git commit -m "se revertio cambio"
+
+3 Guardar todos ewstos archivos en la nube con la url 
+git remote add origin https://github.com/crccode/primer_modulo.git
+git push -u origin master
+Nota si se modifica un archivo aparecera "M", debemos enviarlo al area temporal commit
