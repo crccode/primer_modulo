@@ -33,6 +33,7 @@ class Libros(models.Model):
     # Esta funcion no permite valores repetidos , caso de ya no querer la validacion se la debe quitar en postgre video16
     # nombre del sql contraint, unique(campo), mensaje de error
     _sql_constraints=[("name_uniq","unique(name,isbn)","El nombre del libro ya existe")]
+    # FIN
 
 
 
