@@ -1,4 +1,5 @@
 https://www.youtube.com/watch?v=hWglK8nWh60
+https://www.youtube.com/watch?v=GG4mftkQVrs
 
 # Indicar la version del git 
 git version
@@ -25,3 +26,8 @@ git commit -m "se revertio cambio"
 git remote add origin https://github.com/crccode/primer_modulo.git
 git push -u origin master
 Nota si se modifica un archivo aparecera "M", debemos enviarlo al area temporal commit
+
+4 Pull compara los archivos que tenemos en el git hub y lo trae al local
+git pull
+5 Fetch sincroniza si se hizo algun cambio en la nube y lo compara lo deja igual local=nube 
+git fetch
