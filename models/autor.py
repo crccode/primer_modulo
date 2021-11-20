@@ -9,4 +9,5 @@ class Autor(models.Model):
     #  required=True de esta forma evitamos valores nulos a nivel de BD
     name = fields.Char(string="Nombre", required=True)
     last_name = fields.Char(string="Apellido")
-    # AGREGAR EN EL INIT
+    # CAMPOS ONE2MANY
+    #clave = fields.Many2one('libros', string="Seleccione el libro que escribio")

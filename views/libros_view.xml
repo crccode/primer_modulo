@@ -11,21 +11,46 @@
             <form string="Libro">
                 <!-- BARRA DE ESTADO ARRIBA DE LA HOJA  -->
                 <header>
-                    <field name="state" widget="statusbar" options="{'clickable':1}"/>
+                        <field name="state" widget="many2many_tags" options="{'clickable':1}"/>
                 </header>
                 <!-- Colocamos una hoja y dentro los grupos  -->
                 <sheet>
-                    <group> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
-                        <group> <!-- Creamos un sub grupo de 6 columnas    -->
+                    <group name="group_top" col = '3'> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
+                        <group name="group_left"> <!-- Creamos un sub grupo de 6 columnas    -->
                             <!-- usaremos widget podemos usar uno de los dos  height="50" o class="oe_avatar"  -->
-                            <field name="image" widget="image" class="oe_avatar"/>
-                            <field name="name"/>
-                            <field name="editorial"/>
-                            <field name="isbn"/>
-                            <field name="autor_id"/>
                             <field name="lastname_autor"/>
                             <field name="description"/>
+                            <field name="autores_ids" widget="many2many_tags">
+                                <tree>
+<!--                                    El editable nos permite editar la tabla -->
+                                    <field name="name"/>
+<!--                                    Aqui colocamos todos los campos que queremos que muestre de la tabla autor-->
+                                </tree>
+                            </field>
                         </group>
+                        <group name="group_right">
+                            <separator string="Llenar los campos"/>
+                            <field name="isbn"/>
+                        </group>
+                        <group name="group_medio">
+                            <field name="name"/>
+
+                        </group>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Pagina 1" name="whiteboard">
+                                <group>
+                                    <field name="editorial">Supplier VAT</field>
+                                    <field name="autor_id" >VAT</field>
+                                </group>
+                            </page>
+                            <page string="Pagina 2" name="second_page">
+                                <field name="image" widget="image" class="oe_avatar"/>
+
+                                    <!-- Second page content -->
+                            </page>
+                        </notebook>
                     </group>
                 </sheet>
                 <!-- MDOULO MAIL   -->
@@ -52,6 +77,7 @@
                 <field name="isbn"/>
                 <field name="autor_id"/>
                 <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state =='published'"/>
+
                 <!-- decoration-danger son los colores  -->
             </tree>
         </field>

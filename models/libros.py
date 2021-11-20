@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 #Creamos un modelo a partir de una clase
 class Libros(models.Model):
     #_name es la palabra reservada para crear tablas en la BD
@@ -19,15 +19,24 @@ class Libros(models.Model):
     # Badge estados  draft y published-< agregamos en la vista TREE
     state = fields.Selection([('draft','Borrador'),('published','Publicado')], default='draft')
 
+    # CAMPOS ONE2MANY
+    autores_ids= fields.Many2many('autor', string="Seleciione los autores")
+
     # Campo calculado  el store=true es para que se guarde en la BD
     description = fields.Char(string="Descripcion", compute="_compute_description")
-    # Hce que se actualiza cada ves que se modifique el campo name   @api.depends('name')
+
+    # Hce que se actualiza cada ves que se modifique el campo name
+    @api.depends('name','isbn')
     def _compute_description(self):
         self.description = self.name + '|' + self.isbn
 
     # Esta funcion no permite valores repetidos , caso de ya no querer la validacion se la debe quitar en postgre video16
     # nombre del sql contraint, unique(campo), mensaje de error
     _sql_constraints=[("name_uniq","unique(name,isbn)","El nombre del libro ya existe")]
+
+
+
+
 
 
 

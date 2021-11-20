@@ -1,5 +1,6 @@
 # DOCUMENTACION ODOO
 	https://re-odoo-10.readthedocs.io/capitulos/modelos-estructura-datos-aplicacion/
+	https://wiki.nuxpy.com/index.php/Campos_b%C3%A1sicos
 C:\Program Files\Odoo 14.0.20211014\server\odoo\addons\hola
 # Ingresar en modo desarrollador
 	http://localhost:8069/web?debug=1/#action=35&model=ir.module.module&view_type=kanban&cids=&menu_id=5

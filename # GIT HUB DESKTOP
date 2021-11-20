@@ -1,0 +1,13 @@
+[1mdiff --git a/documentos/GIT.txt b/documentos/GIT.txt[m
+[1mindex 7e1b5a7..01588a3 100644[m
+[1m--- a/documentos/GIT.txt[m
+[1m+++ b/documentos/GIT.txt[m
+[36m@@ -15,7 +15,7 @@[m
+ 	Al hacer un cambio en algun archivo automaticamente Git hub Desktop lo reconoce y lo pone de color verde[m
+ 	Se debe realizar un nuevo commit con el cambio[m
+ 	Realizamos Push a nuestro "branch main" o ctrl + P[m
+[31m-	[m
+[32m+[m	[32mcls[m
+ # Descargar los cambios realizado PULL[m
+ 	[m
+ [m
