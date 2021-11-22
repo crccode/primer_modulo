@@ -1,5 +1,6 @@
 https://www.youtube.com/watch?v=hWglK8nWh60
 https://www.youtube.com/watch?v=GG4mftkQVrs
+https://www.youtube.com/watch?v=tFr0Vg1q9Eg&t=317s
 
 # Indicar la version del git 
 git version
@@ -29,13 +30,10 @@ Nota si se modifica un archivo aparecera "M", debemos enviarlo al area temporal 
 
 4 Pull compara los archivos que tenemos en el git hub y lo trae al local
 git pull
-5 Fetch sincroniza si se hizo algun cambio en la nube y lo compara lo deja igual local=nube 
-<<<<<<< HEAD
-git fetch   1231
-=======
+5 Fetch sincroniza si se hizo algun cambio en la nube y lo compara lo deja igual local=nube
 git fetch
 
-5 Brach Son ramas que se usa para repartir partes de un proyecto
+6 Branch Son ramas que se usa para repartir partes de un proyecto
 git log --oneline 	Muestra la rama ejm 4ffac05 (HEAD -> master, origin/master) se modi
 git branch rama2
 git checkout rama2
@@ -43,11 +41,10 @@ git branch	 Muestra la rama actual y las que tenemos
 git commit -m "guardo en la nueva rama"
 Esto siginifica que la rama "master" no tiene este cambio ya que estamos en la "rama2" por lo tanto lo unimos.
 
-6 Merge Siempre debes posicionarte en la rama master y hacer la union
+7 Merge Siempre debes posicionarte en la rama master y hacer la union
 git checkout master
 git log --oneline 	Verificamos
 git branch
 git merge rama2
 git branch -d rama2	Eliminamos la rama2 ya que hicimos la union
 git branch
->>>>>>> rama2
