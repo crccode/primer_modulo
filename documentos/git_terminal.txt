@@ -30,4 +30,4 @@ Nota si se modifica un archivo aparecera "M", debemos enviarlo al area temporal 
 4 Pull compara los archivos que tenemos en el git hub y lo trae al local
 git pull
 5 Fetch sincroniza si se hizo algun cambio en la nube y lo compara lo deja igual local=nube 
-git fetch
+git fetch   1231
