@@ -1,59 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-    
-        <report id="report_dailyReportExternalayout" 
-          string="Daily External Report" 
+
+        <report id="report_dailyReportExternalayout"
+          string="Daily External Report"
           model="libros"
-          <!-- "qweb-pdf" genera directamente el pdf y "qweb-html" antes de generar el pdf muestra el diseño -->
           report_type="qweb-html"
           name="primer_modulo.dailyReportExternalayout"
-          menu="True" 
+          menu="True"
           print_report_name="'Report %s %s of the covid-19'"
-         /> 
-         
+        />
+
         <template id="dailyReportExternalayout" >
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
                         <div class="page" style="font-size:18px">
+
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">First</th>
+                                      <th scope="col">Last</th>
+                                      <th scope="col">Handle</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">1</th>
+                                      <td>Mark</td>
+                                      <td>Otto</td>
+                                      <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">2</th>
+                                      <td>Jacob</td>
+                                      <td>Thornton</td>
+                                      <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                                <table border="2px"> <!-- Lo cambiaremos por CSS -->
+                                    <tr>
+                                        <td rowspan="3">Campo unificado
+                                            <img src="..." class="rounded mx-auto d-block" alt="..."/>
+                                        </td>
+                                        <td>Campo 2</td>
+                                        <td>Campo 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Campo 5</td>
+                                        <td>Campo 6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Campo 8</td>
+                                        <td>Campo 9</td>
+                                    </tr>
+                                </table>
+
                                 <div class="row">
                                     <div class="col-md-12" align="center">
-                                        <h2>Reporte CVID-19 </h2>
-
+                                        <h2>Reporte CVID-19 <span t-field="o.name" /></h2>
                                         <h4>Versión Registro Manual</h4>
-                                        <h5>Fuente </h5>
-                                        <h5>País </h5>
+                                        <h5>Fuente <span t-field="o.isbn" /></h5>
                                     </div>
-                                </div>
-                            <div class="row mt8">
-                                    <div class="col-md-12" >
-                                            Infected:  %
-                                    </div>
+
                                 </div>
                                 <div class="row mt8">
                                     <div class="col-md-12" >
-                                        Recovered: %
-                                    </div>
-                                </div>
-                                <div class="row mt8">
-                                    <div class="col-md-12" >
-                                        Deseaced:  %
-                                    </div>
-                                </div>
-                                <div class="row mt8">
-                                    <div class="col-md-12" align="center">
-                                        Total accumulated up to the date of registration.
-                                    </div>
-                                </div>
-                                <div class="row mt8">
-                                    <div class="col-md-12" >
-                                        Total Infected:
-                                    </div>
-                                </div>
-                                <div class="row mt8">
-                                    <div class="col-md-12" >
-                                        Total Recovered: <span t-field="o.name" />
+                                         Recovered: <span t-field="o.name" /> <span t-esc="o.ejemplo_pdf()" /> %
                                     </div>
                                 </div>
                                 <div class="row mt8">
@@ -66,6 +88,6 @@
                 </t>
             </t>
         </template>
-        
+
     </data>
 </odoo>

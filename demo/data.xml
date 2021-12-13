@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record id=" libros1" model="autor">
+    <field name="name">Plaza</field>
+    <field name="last_name">Plaza_como</field>
+</record>
+    </data>
+</odoo>

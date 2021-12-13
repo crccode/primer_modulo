@@ -1,5 +1,16 @@
-<?xml version="1.0"  ?>
+<?xml version="1.0" ?>
 <odoo>
+    <template id="assets_backend" name="your_module_name assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+
+            <script type="text/javascript"
+                    src="/primer_modulo/src/js/framework.js"/>
+<!--            <link rel="stylesheet" type="text/css" href="/primer_modulo/src/css/hello.css"/>-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
+<!--            <canvas id="myChart" width="40" height="40"></canvas>-->
+        </xpath>
+    </template>
+
     <!-- CREAMOS LA VISTA FORMULARIO id  -->
     <record id="libros_form_view" model="ir.ui.view">
         <!--  model ="ir.ui.view" en aqui es donde se guardan las vistas  -->
@@ -11,13 +22,14 @@
             <form string="Libro">
                 <!-- BARRA DE ESTADO ARRIBA DE LA HOJA  -->
                 <header>
-                        <field name="state" widget="many2many_tags" options="{'clickable':1}"/>
+                    <field name="state" widget="many2many_tags" options="{'clickable':1}"/>
                 </header>
                 <!-- Colocamos una hoja y dentro los grupos  -->
                 <sheet>
                     <group name="group_top" col = '3'> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
                         <group name="group_left"> <!-- Creamos un sub grupo de 6 columnas    -->
                             <!-- usaremos widget podemos usar uno de los dos  height="50" o class="oe_avatar"  -->
+                            <field name="fecha" options="{'format': 'YYYY'}" widget = "daterange" />
                             <field name="lastname_autor"/>
                             <field name="description"/>
                             <field name="autores_ids" widget="many2many_tags">
@@ -31,11 +43,11 @@
                         <group name="group_right">
                             <separator string="Llenar los campos"/>
                             <field name="isbn"/>
+                            <field name="perc_complete"/>
                         </group>
-                        <group name="group_medio">
-                            <field name="name"/>
-
-                        </group>
+                    </group>
+                    <group name="group_medio">
+                        <field name="name" widget="html"/>
                     </group>
                     <group>
                         <notebook>
@@ -43,6 +55,7 @@
                                 <group>
                                     <field name="editorial">Supplier VAT</field>
                                     <field name="autor_id" >VAT</field>
+                                    <field name="autores_id"/>
                                 </group>
                             </page>
                             <page string="Pagina 2" name="second_page">
@@ -85,7 +98,16 @@
 
      <!-- CREAMOS LA VISTA KANBAN , EN EL MENU PRINCIPAL TAMBIEN  -->
 
-
+     <!--    XREAMOS LA VISTA GRAPH-->
+    <record id="libros_graph_view" model="ir.ui.view">
+        <field name="name">libro.graph.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <graph string="Codigos">
+                <field name="name"/>
+            </graph>
+        </field>
+    </record>
      <!-- CREAMOS LA VISTA BUSQUEDA , permite buscar por libro o autor  -->
     <record id="libros_search_view" model="ir.ui.view">
         <field name="name">libros.search.view</field>
@@ -97,5 +119,7 @@
             </search>
         </field>
     </record>
+
+
     <!-- Añade este archivo al manifiest   -->
 </odoo>

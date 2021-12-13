@@ -7,7 +7,7 @@
          <!--NOMBRE DE ESTA ACCION-->
         <field name="res_model">libros</field>
          <!--ES EL MODELO QUE CREAMOS libros-->
-        <field name ="view_mode">tree,form,kanban</field>
+        <field name ="view_mode">tree,form,kanban,graph</field>
          <!-- Te permite visualizar kanban  -->
 <!--         TIPO DE VISTA QUE VA TENER -->
     </record>
