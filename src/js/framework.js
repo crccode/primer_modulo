@@ -1,5 +1,10 @@
+myFunc()
+function hello()
+{
+    return "Hello WORLD"
+}
+alert(hello())
 
-//myFunc()
 function myFunc()
 {
     const ctx = document.getElementById('myChart').getContext('2d');

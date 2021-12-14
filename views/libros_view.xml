@@ -1,15 +1,15 @@
 <?xml version="1.0" ?>
 <odoo>
-    <template id="assets_backend" name="your_module_name assets" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
+<!--    <template id="assets_backend" name="your_module_name assets" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
 
-            <script type="text/javascript"
-                    src="/primer_modulo/src/js/framework.js"/>
-<!--            <link rel="stylesheet" type="text/css" href="/primer_modulo/src/css/hello.css"/>-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
-<!--            <canvas id="myChart" width="40" height="40"></canvas>-->
-        </xpath>
-    </template>
+<!--            <script type="text/javascript"-->
+<!--                    src="/primer_modulo/src/js/framework.js"/>-->
+<!--&lt;!&ndash;            <link rel="stylesheet" type="text/css" href="/primer_modulo/src/css/hello.css"/>&ndash;&gt;-->
+<!--            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>-->
+
+<!--        </xpath>-->
+<!--    </template>-->
 
     <!-- CREAMOS LA VISTA FORMULARIO id  -->
     <record id="libros_form_view" model="ir.ui.view">

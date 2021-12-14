@@ -11,7 +11,9 @@
           print_report_name="'Report %s %s of the covid-19'"
         />
 
-        <template id="dailyReportExternalayout" >
+        <template id="dailyReportExternalayout">
+
+
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
@@ -75,18 +77,73 @@
                                 </div>
                                 <div class="row mt8">
                                     <div class="col-md-12" >
-                                         Recovered: <span t-field="o.name" /> <span t-esc="o.ejemplo_pdf()" /> %
+                                         USO FUNCION: <span t-field="o.name" /> <span t-esc="o.ejemplo_pdf()" /> %
                                     </div>
                                 </div>
                                 <div class="row mt8">
                                     <div class="col-md-12" >
                                         Total Deseaced: <span t-field="o.editorial" />
+                                        <h1>CANVAS 5.5</h1>
+                                        <canvas id="myChart" height="100"></canvas>
+                                        <img id="myChart2" height="500" src=""/>
                                     </div>
                                 </div>
                         </div>
                     </t>
                 </t>
             </t>
+            <xpath expr="." position="inside">
+
+                <script type="text/javascript"
+                        src="/primer_modulo/src/js/framework.js"/>
+    <!--            <link rel="stylesheet" type="text/css" href="/primer_modulo/src/css/hello.css"/>-->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
+                 <script>
+                        alert('BEN TO')
+                        const ctx = document.getElementById('myChart').getContext('2d');
+                        const myChart = new Chart(ctx, {
+                          type: 'line',
+                          data: {
+                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            datasets: [{
+                              label: '# of Votes',
+                              data: [12, 19, 3, 5, 2, 3],
+                              backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                              ],
+                              borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                              ],
+                              borderWidth: 1
+                            }]
+                          },
+                          options: {
+                            scales: {
+                              y: {
+                                beginAtZero: true
+                              }
+                            }
+                          }
+                        });
+
+
+                        var canvas = document.getElementById("myChart");
+                        document.getElementById("myChart2").src = "'" + canvas.toDataURL() + "'";
+
+                 </script>
+                
+            </xpath>
+
         </template>
 
     </data>
