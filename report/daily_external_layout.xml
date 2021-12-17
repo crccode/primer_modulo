@@ -70,14 +70,20 @@
                                 <div class="row">
                                     <div class="col-md-12" align="center">
                                         <h2>Reporte CVID-19 <span t-field="o.name" /></h2>
+                                        <img t-if="o.image"
+                                                 t-att-src="'data:image/png;base64,%s' % to_text(o.image)"
+                                                 height="140" border="1" width="120"/>
                                         <h4>Versión Registro Manual</h4>
                                         <h5>Fuente <span t-field="o.isbn" /></h5>
+
+<!--                                        <img t-attf-src = {{o.polo}} />-->
                                     </div>
 
                                 </div>
                                 <div class="row mt8">
                                     <div class="col-md-12" >
-                                         USO FUNCION: <span t-field="o.name" /> <span t-esc="o.ejemplo_pdf()" /> %
+                                        <span t-esc="o.ejemplo_pdf()" ></span>
+                                        <img t-att-src="o.grafico()" style="height: 200px;" alt="Grafico 1"/>
                                     </div>
                                 </div>
                                 <div class="row mt8">
