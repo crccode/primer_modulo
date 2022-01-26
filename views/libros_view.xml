@@ -21,16 +21,30 @@
         <field name="arch" type="xml">
             <form string="Libro">
                 <!-- BARRA DE ESTADO ARRIBA DE LA HOJA  -->
+
                 <header>
-                    <field name="state" widget="many2many_tags" options="{'clickable':1}"/>
+                    <field name="state" widget="statusbar" options="{'clickable':1}"/>
                 </header>
+<!--                <field name="reference"/>-->
                 <!-- Colocamos una hoja y dentro los grupos  -->
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="appointment_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Appointments</span>
+                            </div>
+                        </button>
+                    </div>
+<!--                    Exite boton de tipo OBJECT nos permite ejecutar un metodo sobre la misma vista, name es el nombre delk metodo-->
+<!--                    metodo tipo ACTION nos permite activar o redireccionar a una vista -->
                     <group name="group_top" col = '3'> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
                         <group name="group_left"> <!-- Creamos un sub grupo de 6 columnas    -->
                             <!-- usaremos widget podemos usar uno de los dos  height="50" o class="oe_avatar"  -->
-                            <field name="fecha" options="{'format': 'YYYY'}" widget = "daterange" />
-                            <field name="lastname_autor"/>
+                            <field name="fecha" options="{'format': 'YYYY'}"  />
+<!--                            OCULTAR UN CAMPO EN ODOO-->
+                            <field name="lastname_autor" attrs="{'invisible': True}"/>
+                            <field name="auType"/>
                             <field name="description"/>
                             <field name="autores_ids" widget="many2many_tags">
                                 <tree>
@@ -55,7 +69,39 @@
                                 <group>
                                     <field name="editorial">Supplier VAT</field>
                                     <field name="autor_id" >VAT</field>
-                                    <field name="autores_id"/>
+
+<!--                                    ONE 25 MANY-->
+                                    <field name="autores_id"  widget="section_and_note_one2many" mode="tree" >
+                                         <form>
+                                             <field name="display_type" invisible="1"/>
+                                             <field name="sequence" invisible="1"/>
+                                             <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                                                  <field name="valor" invisible="1"/>
+                                             </group>
+                                             <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                                             <label for="name" string="Section Name (eg. Products, Services)" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                                             <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                                             <field name="name"/>
+
+                                             <field name="codigo_id" optional="hide"/>
+                                         </form>
+                                        <tree editable="bottom">
+                                             <control>
+                                                <create name="add_product_control" string="Añadir linea"/>
+                                                <create name="add_section_control" string="Añadir sección" context="{'default_display_type': 'line_section'}"/>
+                                                <create name="add_note_control" string="Añadir Nota" context="{'default_display_type': 'line_note'}"/>
+                                             </control>
+                                             <field name="display_type" invisible="1"/>
+                                             <field name="sequence" widget="handle" />
+
+                                             <field name="name" widget="text"/>
+<!--                                             <field name="description"/>-->
+<!--                                             <field name="gravamen" />-->
+
+                                         </tree>
+                                    </field>
+<!--                                    FIN ONE 2 MANY-->
+
                                 </group>
                             </page>
                             <page string="Pagina 2" name="second_page">
@@ -90,13 +136,43 @@
                 <field name="isbn"/>
                 <field name="autor_id"/>
                 <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state =='published'"/>
-
                 <!-- decoration-danger son los colores  -->
             </tree>
         </field>
     </record>
-
      <!-- CREAMOS LA VISTA KANBAN , EN EL MENU PRINCIPAL TAMBIEN  -->
+    <record id="libros_kanban_view" model="ir.ui.view">
+        <field name="name">libro.kanban.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="isbn"/>
+                <field name="lastname_autor"/>
+                <field name="description"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('libros', 'image', record.id.raw_value)" alt="Image"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title oe_partner_heading">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
      <!--    XREAMOS LA VISTA GRAPH-->
     <record id="libros_graph_view" model="ir.ui.view">

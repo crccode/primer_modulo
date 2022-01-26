@@ -14,7 +14,8 @@
 		'views/libros_view.xml',
 		'report/daily_external_layout.xml',
 		'security/libreria_security.xml',
-		'security/ir.model.access.csv'
+		'security/ir.model.access.csv',
+		'data/data.xml',
 
 	],
 

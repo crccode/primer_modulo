@@ -1,8 +1,10 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 from bs4 import BeautifulSoup
 from matplotlib import pyplot as plt
 import io
 import base64
+import re
 #Creamos un modelo a partir de una clase
 
 
@@ -13,7 +15,8 @@ class Libros(models.Model):
     #  required=True de esta forma evitamos valores nulos a nivel de BD
     # Heredamos el mail y habilitar la funcionalidad en la vista descpues de la etiqueta </sheet>
     _inherit= ['mail.thread','mail.activity.mixin']
-    name = fields.Html(string="Nombre del libro", required=True, tracking=True)  #tracking=True esta propiedad poner en los campos que quieras saber cuando se modifiquen
+    name = fields.Char(string="Nombre del libro", tracking=True)  #tracking=True esta propiedad poner en los campos que quieras saber cuando se modifiquen
+    _order = "name desc"
     editorial = fields.Char(string="Editorial", required=True)
     isbn = fields.Char(string="ISBN", required=True)
     #relacion Many palabras reservada conmdel_name= autor agragar a la vista este campo "libros_view"
@@ -21,22 +24,64 @@ class Libros(models.Model):
     # Funcion related permite traer informacion de otro moodelo recibe el id . el campo ejm related="autor_id.last_name"
     lastname_autor = fields.Char(related="autor_id.last_name",string="Apellido del autor")
     # Creamos imagen para el libro
-    image = fields.Binary(string="Image", compute="_upload_grafico")
+    image = fields.Binary(string="Image") #, compute="_upload_grafico"
     # Badge estados  draft y published-< agregamos en la vista TREE
     state = fields.Selection([('draft','Borrador'),('published','Publicado')], default='draft')
     perc_complete = fields.Float('% Complete', (3, 2))
     # CAMPOS ONE2MANY
     autores_ids= fields.Many2many('autor', string="Seleciione los autores")
-    # RELACION ONE2MANY
-    autores_id = fields.One2many('autor', 'avaluo_id', string="Seleciione los autores")
+    # RELACION ONE2MANY CON AGREGAR NOTA , ENCABEZADO
+    # autores_id = fields.One2many('autor', 'avaluo_id', string="Seleciione los autores")
+
+    autores_id = fields.One2many('autor', 'codigo_id', string='Seleciione',
+                                           states={'cancel': [('readonly', True)], 'done': [('readonly', True)]},
+                                           copy=True, auto_join=True)
 
     #FECHAS EN ODOO
     fecha = fields.Date()
+    gravamen = fields.Boolean(string="Inscripcion Gravamen")
 
     # Campo calculado  el store=true es para que se guarde en la BD  , compute="_compute_description"
     description = fields.Char(string="Descripcion")
-
+    notas_aclarativas  = fields.Char(string="Notas Aclarativas")
     polo = fields.Text(string="hola")
+    texto = 'holllllll'
+    # CREANDO VALOR POR DEFECTO DENTRO UNA FUNCION
+    @api.model
+    def get_default_auType(self):
+        default_auType = 'type1'
+        return default_auType
+
+    auType = fields.Selection(selection=[('type1', 'Type 1'), ('type2', 'Type 2'), ], string='Type',
+                              default=get_default_auType)
+    # PROBANDO BOTON INTELIGENTE
+    appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
+    def _compute_appointment_count(self):
+        for rec in self:
+            appointment_count = self.env['autor'].search_count([('avaluo_id', '=', rec.id)])
+            rec.appointment_count = appointment_count
+    def action_open_appointments(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Appointments',
+            'res_model': 'autor',
+            'domain': [('avaluo_id', '=', self.id)],
+            'context': {'default_patient_id': self.id},
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
+    # PROBANDO SECUENCIA AUTOMATICA
+    # reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
+    #                         default=lambda self: _('New'))
+    # reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
+    #
+    # @api.model
+    # def create(self, vals):
+    #     if vals.get('reference', _('New')) == _('New'):
+    #         vals['reference'] = self.env['ir.sequence'].next_by_code('libros') or _('New')
+    #     res = super(Libros, self).create(vals)
+    #     print(res)
+    #     return res
 
     #Como no tiene un apidepends esta funcion se ejecuta siempre
     def _upload_grafico(self):
@@ -47,11 +92,14 @@ class Libros(models.Model):
                     bbox_inches='tight')
         img.seek(0)
         encoded = base64.b64encode(img.getvalue())
-        self.image = encoded
+        # self.image = encoded
 
-    @api.onchange('image')
+    def ejemplo(self):
+         self.texto = 'viernes'
+    @api.onchange('image', 'isbn')
     def onchange_method(self):
-        self.name = str(self.image)
+        # self.ejemplo()
+        self.name = self.texto
     @api.depends('autor_id')
     def _compute_descripcion_general(self):
         if not self.name:
@@ -76,6 +124,8 @@ class Libros(models.Model):
     def _compute_description(self):
         self.description = self.name + '|' + self.isbn
     # Esto solo se usa en el reporte
+
+
     def ejemplo_pdf(self):
         # fig, ax = plt.subplots()
         # ax.plot([1, 2, 3, 4], [1, 2, 0, 0.5])
@@ -98,6 +148,7 @@ class Libros(models.Model):
         img.seek(0)
         return base64.b64encode(img.getvalue())
 
+
     def grafico(self):
         fig, ax = plt.subplots()
         ax.plot([1, 2, 3, 4], [1, 2, 0, 0.5])
@@ -110,7 +161,7 @@ class Libros(models.Model):
         my_html = '<img src="data:image/png;base64, {}"/>'.format(encoded.decode('utf-8'))
         # my_html9 = '"data:image/png;base64, {}"'.format(encoded.decode('utf-8'))
         my_html9 = 'data:image/png;base64, {}'.format(encoded.decode('utf-8'))
-        self.polo= my_html
+        self.polo = my_html
 
         return my_html9
     # Recorrer una tabla One2many
@@ -125,12 +176,66 @@ class Libros(models.Model):
     # nombre del sql contraint, unique(campo), mensaje de error
     _sql_constraints=[("name_uniq","unique(name,isbn)","El nombre del libro ya existe")]
     # FIN
+    # OVERRIDE DEL METHOD ONCREATE Y GENERAR UN VALOR SECUENCIAL
+    # reference = fields.Char(string='Order', required=True, copy=False, readonly=True,
+    #                         default=lambda self: _('New'))
+    # note = fields.Text(string='Description')
+    # @api.model
+    # def default_get(self, fields):
+    #     res = super(Libros, self).default_get(fields)
+    #     res['note'] = 'NEW Patient Created'
+    #     return res
+    #
+    # @api.model
+    # def create(self, vals):
+    #     if not vals.get('note'):
+    #         vals['note'] = 'New Libro'
+    #     if vals.get('reference', _('New')) == _('New'):
+    #         vals['reference'] = self.env['ir.sequence'].next_by_code('libros') or _('New')
+    #     res = super(Libros, self).create(vals)
+    #     return res
+
+    # VALIDACIONES
+    age = fields.Integer(string="Age")
+    reference = fields.Integer(string="Age")
+    @api.constrains('name')
+    def check_name(self):
+        for rec in self:
+            patients = self.env['libros'].search([('name', '=', rec.name), ('id', '!=', rec.id)])
+            if patients:
+                raise ValidationError(_("Name %s Already Exists" % rec.name))
+
+    @api.constrains('age')
+    def check_age(self):
+        for rec in self:
+            if rec.age == 0:
+                raise ValidationError(_("Age Cannot Be Zero .. !"))
+
+    # Metodo que devuelve una lista de nombres
+    # def name_get(self):
+    #     result = []
+    #     for rec in self:
+    #         name = '[' + rec.reference + '] ' + rec.name
+    #         result.append((rec.id, name))
+    #     return result
+    # Validacion de email_sql_constraints
+    # lista de  (name, sql_definition, message)
 
 
+    # _sql_constraints = [
+    #     ('email_uniq', 'unique(email)', 'Email id is unique change your custom email id'),
+    # ]
+    # @api.constrains('email')
+    # def validate_email(self):
+    #     for obj in self:
+    #         if obj.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", obj.email) == None:
+    #             raise ValidationError("Please Provide valid Email Address: %s" % obj.email)
+    #     return True
+    #
+    # @api.constrains('date_end')
+    # def _check_date_end(self):
+    #     for record in self:
+    #         if record.date_end < fields.Date.today():
+    #             raise ValidationError("The end date cannot be set in the past")
 
-
-
-
-
-
-
+    

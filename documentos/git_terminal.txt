@@ -14,6 +14,17 @@ git add .     hace seguimiento de todos los archivos
 git status -s        Vemos que se añadio "A"
 # Commit permite hacer una version de nuestro archivo "A" al git
 git commit -m "Agregamos archivo nuevo"
+# La primera vez que se sube un proyecto 
+git init
+git status 	Muestra con rojo los archivos 
+git add .	Prepara los archivos para subirlo 
+git status 	Muestra color verde 
+git config --global user.email "jdomscz@gmail.com"	opcional
+git config --global user.name "crccode"			opcional
+git commit -m "Primer proyecto"
+git branch -M main					Indicamos que vamos a subir a la rama principal
+git remote add origin https://github.com/crccode/myweb.git
+git push -u origin main					opcional master
 
 2 Revertir cambios
 # Muestra todos los commit que hemos hecho
@@ -35,8 +46,8 @@ git fetch
 
 6 Branch Son ramas que se usa para repartir partes de un proyecto
 git log --oneline 	Muestra la rama ejm 4ffac05 (HEAD -> master, origin/master) se modi
-git branch rama2
-git checkout rama2
+git branch rama2	Crear una nueva rama 
+git checkout rama2	Activa la nueva rama
 git branch	 Muestra la rama actual y las que tenemos
 git commit -m "guardo en la nueva rama"
 Esto siginifica que la rama "master" no tiene este cambio ya que estamos en la "rama2" por lo tanto lo unimos.
@@ -48,3 +59,4 @@ git branch
 git merge rama2
 git branch -d rama2	Eliminamos la rama2 ya que hicimos la union
 git branch
+
