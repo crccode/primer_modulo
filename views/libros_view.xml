@@ -31,6 +31,7 @@
                     <div class="oe_button_box" name="button_box">
                         <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
                             <div class="o_stat_info">
+
                                 <field name="appointment_count" class="o_stat_value"/>
                                 <span class="o_stat_text">Appointments</span>
                             </div>
@@ -44,6 +45,7 @@
                             <field name="fecha" options="{'format': 'YYYY'}"  />
 <!--                            OCULTAR UN CAMPO EN ODOO-->
                             <field name="lastname_autor" attrs="{'invisible': True}"/>
+                            <h3> HOLA MUNDO</h3>
                             <field name="auType"/>
                             <field name="description"/>
                             <field name="autores_ids" widget="many2many_tags">
