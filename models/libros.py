@@ -240,7 +240,7 @@ class Libros(models.Model):
     #             raise ValidationError("The end date cannot be set in the past")
 
     # USANDO CURSOR EN BASE DE DATOS CON ODOO
-    @api.onchange('ciudad_id', 'date_avaluo', 'zona_id', 'pavimento')
+
     def _compute_precio_lote12(self):
         today = date.today()
         gestion = format(today.year)
