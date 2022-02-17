@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from matplotlib import pyplot as plt
 import io
 import base64
+from datetime import date
 import re
 #Creamos un modelo a partir de una clase
 
@@ -238,4 +239,27 @@ class Libros(models.Model):
     #         if record.date_end < fields.Date.today():
     #             raise ValidationError("The end date cannot be set in the past")
 
-    
+    # USANDO CURSOR EN BASE DE DATOS CON ODOO
+    @api.onchange('ciudad_id', 'date_avaluo', 'zona_id', 'pavimento')
+    def _compute_precio_lote12(self):
+        today = date.today()
+        gestion = format(today.year)
+        zona = '99'
+        ciudad = 'Santa Cruz de la Sierra'
+        tipo_pavimento = 'cemento'
+        sql = "select " + tipo_pavimento + " from  avaluo_tabla_parametro as lista where  gestion_id ='" + gestion + "' and zona= '" + zona + "' and ciudad_id= '" + ciudad + "'"
+        print(sql)
+        try:
+            cursor = self.env.cr
+            cursor.execute(sql)
+            res = str(cursor.fetchall())
+            print(res)
+            if res != '[]':
+                cadena = res
+                cad1 = cadena.lstrip("[(")
+                cad2 = cad1.rstrip(",)]")
+                print(cad2)
+            else:
+                print('ESTA VACIO')
+        except:
+            print('ERROR!')
