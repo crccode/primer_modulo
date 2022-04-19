@@ -1,4 +1,5 @@
-myFunc()
+//myFunc()
+alert('hola')
 function hello()
 {
     return "Hello WORLD"

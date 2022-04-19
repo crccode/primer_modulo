@@ -8,7 +8,7 @@
     <template id="assets_backend" name="your_module_name assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript"
-                    src="/sistecem_avaluos/static/src/js/framework.js"/>
+                    src="/primer_modulo/static/src/js/framework.js"/>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
         </xpath>
     </template>

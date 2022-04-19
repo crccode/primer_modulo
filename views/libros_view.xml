@@ -24,6 +24,9 @@
 
                 <header>
                     <field name="state" widget="statusbar" options="{'clickable':1}"/>
+                    <script type="text/javascript">
+                        alert("begin otro ");
+                    </script>
                 </header>
 <!--                <field name="reference"/>-->
                 <!-- Colocamos una hoja y dentro los grupos  -->
@@ -37,6 +40,38 @@
                             </div>
                         </button>
                     </div>
+                    <button class="oe_stat_button"
+                            icon="fa-home"
+                            onclick="funcion()"
+                            aria-label="GPS"
+                            style="font-size: 15px;">
+
+                    </button>
+                    <xpath expr="//form" position="inside">
+                        <script>
+                            function funcion(){
+
+                                if (navigator.geolocation) {
+
+                                    navigator.geolocation.getCurrentPosition(viewMap, ViewError, { timeout: 1000 });
+                                    } else {
+                                    alert('holahhhhhhhhhhhhhh');
+                                }
+
+                            }
+                            function viewMap(position) {
+
+                                var lon = position.coords.longitude; //guardamos la longitud
+                                var lat = position.coords.latitude; //guardamos la latitud
+                                var joined = lat+','+lon;
+                                alert(joined);
+
+                                }
+                                function ViewError(error) {
+                                alert(error.code);
+                            }
+                        </script>
+                    </xpath>
 <!--                    Exite boton de tipo OBJECT nos permite ejecutar un metodo sobre la misma vista, name es el nombre delk metodo-->
 <!--                    metodo tipo ACTION nos permite activar o redireccionar a una vista -->
                     <group name="group_top" col = '3'> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
@@ -120,8 +155,10 @@
                     <field name="activity_ids"/>
                     <field name="message_ids"/>
                 </div>
+
             </form>
         </field>
+
     </record>
 
     <!-- AGREGAMOS LA VISTA TREE  se guardara en el modelo "ir.ui.view" -->
