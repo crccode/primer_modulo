@@ -20,6 +20,7 @@ class Libros(models.Model):
     _order = "name desc"
     editorial = fields.Char(string="Editorial", required=True)
     isbn = fields.Char(string="ISBN", required=True)
+
     #relacion Many palabras reservada conmdel_name= autor agragar a la vista este campo "libros_view"
     autor_id = fields.Many2one(comodel_name="autor", string="Autor", required=True)
     # Funcion related permite traer informacion de otro moodelo recibe el id . el campo ejm related="autor_id.last_name"
@@ -47,6 +48,17 @@ class Libros(models.Model):
     notas_aclarativas  = fields.Char(string="Notas Aclarativas")
     polo = fields.Text(string="hola")
     texto = 'holllllll'
+
+
+
+
+    new_field = fields.Char(string="test", required=False, )
+
+    @api.model
+    def my_function(self):
+        print("Hello Word");
+    def print_barcode(self):
+        print('Am here')
     # CREANDO VALOR POR DEFECTO DENTRO UNA FUNCION
     @api.model
     def get_default_auType(self):
@@ -62,6 +74,8 @@ class Libros(models.Model):
             appointment_count = self.env['autor'].search_count([('avaluo_id', '=', rec.id)])
             rec.appointment_count = appointment_count
     def action_open_appointments(self):
+        print('yes')
+        print(self.appointment_count)
         return {
             'type': 'ir.actions.act_window',
             'name': 'Appointments',
@@ -101,25 +115,7 @@ class Libros(models.Model):
     def onchange_method(self):
         # self.ejemplo()
         self.name = self.texto
-    @api.depends('autor_id')
-    def _compute_descripcion_general(self):
-        if not self.name:
-            self.name = "<table style='border-color:#fff;' class='table'><tbody>" \
-                                       "<tr>" \
-                                       "<td width='13%'><b>De la Ubicación</b></td>" \
-                                       "<td width='87%'>Descripción de la Ubicacion</td>" \
-                                       "</tr>" \
-                                       "<tr><td><b>De la Zona</b></td><td>Descripción de la Zona</td></tr>" \
-                                       "<tr><td><b>De la Delimitación</b></td><td>Descripción de la limitacion</td></tr>" \
-                                       "<tr><td><b>De los Ambientes</b></td><td>Descripción de los ambientes</td></tr>" \
-                                       "<tr><td><b>De la Distribución</b></td><td>Descripción de la distribución</td></tr>" \
-                                       "<tr><td><b>Tipo de inmueble</b></td><td>Descripción de el tipo de inmueble</td></tr>" \
-                                       "</tbody></table> "
 
-        soup = BeautifulSoup(self.name, 'html.parser')
-        rows = soup.findAll('td')[1::2]
-        if self.autor_id:
-            self.name = self.name.replace(str(rows[0]), '<td>' + str(self.name) + '</td>')
     # Hce que se actualiza cada ves que se modifique el campo name
     @api.depends('name','isbn')
     def _compute_description(self):

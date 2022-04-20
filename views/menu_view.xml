@@ -35,6 +35,8 @@
     <!--  CREAMOS EL MENU PARA AUTORES , habilitar los permiosos en "ir.model.access.csv"-->
     <menuitem name="Autores" id="autores_menu" parent="libreria_menu" action="autores_action"/>
 
+
+
 </odoo>
 
 <!--NOMBRE DE ESTA ACCION-->

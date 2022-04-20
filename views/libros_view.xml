@@ -11,6 +11,7 @@
 <!--        </xpath>-->
 <!--    </template>-->
 
+
     <!-- CREAMOS LA VISTA FORMULARIO id  -->
     <record id="libros_form_view" model="ir.ui.view">
         <!--  model ="ir.ui.view" en aqui es donde se guardan las vistas  -->
@@ -32,21 +33,21 @@
                 <!-- Colocamos una hoja y dentro los grupos  -->
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                        <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar" onclick="funcion()">
                             <div class="o_stat_info">
-
                                 <field name="appointment_count" class="o_stat_value"/>
                                 <span class="o_stat_text">Appointments</span>
                             </div>
                         </button>
-                    </div>
-                    <button class="oe_stat_button"
-                            icon="fa-home"
-                            onclick="funcion()"
-                            aria-label="GPS"
-                            style="font-size: 15px;">
+                        <button class="oe_highlight"
+                                icon="fa-map-marker" string="Send LibreDTE"
+                                onclick="funcion()" name="send_request_libre_dte"
+                                aria-label="GPS"
+                                style="font-size: 15px;">
 
-                    </button>
+                        </button>
+                    </div>
+
                     <xpath expr="//form" position="inside">
                         <script>
                             function funcion(){
@@ -64,7 +65,9 @@
                                 var lon = position.coords.longitude; //guardamos la longitud
                                 var lat = position.coords.latitude; //guardamos la latitud
                                 var joined = lat+','+lon;
+                                document.getElementById("latitud").innerHTML = "Latitud: " + lat;
                                 alert(joined);
+
 
                                 }
                                 function ViewError(error) {
@@ -72,6 +75,37 @@
                             }
                         </script>
                     </xpath>
+
+                    <form>
+                        <group>
+
+
+
+
+                             <html>
+                                <p style="color:red">Asif html</p>
+                                    <input type="text" value="" id="mySelect" onchange="myFunction()"/>
+                                 <p id="demo"></p>
+                                 <script>
+                                    function myFunction() {
+                                        var x = document.getElementById("mySelect").value;
+                                        document.getElementById("demo").innerHTML = "You selected: " + x;
+
+<!--                                        odoo.define('custom_module.my_javascript', function (require) {"use strict";-->
+<!--                                             var Model = require('web.Model')-->
+
+<!--                                             var custom_model = new  Model('libros')-->
+<!--                                             custom_model.call('my_function')-->
+
+<!--                                        });-->
+
+                                    }
+                                 </script>
+                            </html>
+
+                        </group>
+
+                    </form>
 <!--                    Exite boton de tipo OBJECT nos permite ejecutar un metodo sobre la misma vista, name es el nombre delk metodo-->
 <!--                    metodo tipo ACTION nos permite activar o redireccionar a una vista -->
                     <group name="group_top" col = '3'> <!-- Bootstrap te da 12 columnas o tambien <group  col='3'>  -->
@@ -80,13 +114,15 @@
                             <field name="fecha" options="{'format': 'YYYY'}"  />
 <!--                            OCULTAR UN CAMPO EN ODOO-->
                             <field name="lastname_autor" attrs="{'invisible': True}"/>
-                            <h3> HOLA MUNDO</h3>
+                            <h3 > HOLA MUNDO</h3>
+                            <p id="latitud">la</p>
                             <field name="auType"/>
-                            <field name="description"/>
+                            <field   name="description" />
+
                             <field name="autores_ids" widget="many2many_tags">
                                 <tree>
 <!--                                    El editable nos permite editar la tabla -->
-                                    <field name="name"/>
+                                    <field name="name" />
 <!--                                    Aqui colocamos todos los campos que queremos que muestre de la tabla autor-->
                                 </tree>
                             </field>
@@ -98,14 +134,15 @@
                         </group>
                     </group>
                     <group name="group_medio">
-                        <field name="name" widget="html"/>
+                        <field name="name" widget="text"/>
                     </group>
                     <group>
                         <notebook>
                             <page string="Pagina 1" name="whiteboard">
                                 <group>
                                     <field name="editorial">Supplier VAT</field>
-                                    <field name="autor_id" >VAT</field>
+                                    <field name="autor_id">VAT</field>
+
 
 <!--                                    ONE 25 MANY-->
                                     <field name="autores_id"  widget="section_and_note_one2many" mode="tree" >
@@ -121,6 +158,8 @@
                                              <field name="name"/>
 
                                              <field name="codigo_id" optional="hide"/>
+
+
                                          </form>
                                         <tree editable="bottom">
                                              <control>

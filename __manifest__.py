@@ -18,5 +18,8 @@
 		'data/data.xml',
 
 	],
+	'js': [
+	 '/primer_modulo/src/js/framework.js'
+	],
 
 }
