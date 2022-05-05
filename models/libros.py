@@ -21,6 +21,11 @@ class Libros(models.Model):
     editorial = fields.Char(string="Editorial", required=True)
     isbn = fields.Char(string="ISBN", required=True)
 
+    # WIZARD
+    date = fields.Datetime(string='Date Time', required=True, default=fields.Datetime.now())
+    country_id = fields.Many2one('res.country', required=True)
+
+
     #relacion Many palabras reservada conmdel_name= autor agragar a la vista este campo "libros_view"
     autor_id = fields.Many2one(comodel_name="autor", string="Autor", required=True)
     # Funcion related permite traer informacion de otro moodelo recibe el id . el campo ejm related="autor_id.last_name"
@@ -114,7 +119,9 @@ class Libros(models.Model):
     @api.onchange('image', 'isbn')
     def onchange_method(self):
         # self.ejemplo()
+        print(self.env['res.currency'])
         self.name = self.texto
+
 
     # Hce que se actualiza cada ves que se modifique el campo name
     @api.depends('name','isbn')

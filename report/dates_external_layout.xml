@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+          id="report_DateReportExternalayout"
+          string="Date External Report"
+          model="reporte"
+          report_type="qweb-pdf"
+          name="primer_modulo.dates.Report.External.Layout"
+
+          menu="False"
+          print_report_name="'Report %s %s of the covid-19' % (object.date,object.country_id.name)"
+         />
+
+        <template id="datesReportExternalayout" >
+            <t t-call="web.html_container">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-size:18px">
+                                <div class="row">
+                                    <div class="col-md-12" align="center">
+                                        <h2>Reporte CVID-19 </h2>
+<!--                                        <h4>De: <t t-esc="start_date"></t> Hasta: <t t-esc="end_date"></t> </h4>-->
+<!--                                        <table class="table mt16">-->
+<!--                                              <thead class="thead-dark">-->
+<!--                                                <tr >-->
+<!--                                                  <th scope="col">Source</th>-->
+<!--                                                  <th scope="col">Country</th>-->
+<!--                                                  <th scope="col">Infected</th>-->
+<!--                                                  <th scope="col">Recovered</th>-->
+<!--                                                  <th scope="col">Deseaced</th>-->
+<!--                                                </tr>-->
+<!--                                              </thead>-->
+<!--&lt;!&ndash;                                              <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                  <t t-foreach="CovidRecords" t-as="record" >&ndash;&gt;-->
+<!--&lt;!&ndash;                                                      <tr >&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                            <t t-esc="record['editorial']" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                            <t t-esc="record['country_id'][1]" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                            <t t-esc="record['isbn']" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                         <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                            <t t-esc="record['isbn']" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                         <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                            <t t-esc="record['isbn']" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                              </tbody>&ndash;&gt;-->
+<!--                                        </table>-->
+                                    </div>
+                                </div>
+                        </div>
+                    </t>
+
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -13,10 +13,11 @@
 		'views/menu_view.xml',
 		'views/libros_view.xml',
 		'report/daily_external_layout.xml',
+		'report/dates_external_layout.xml',
 		'security/libreria_security.xml',
 		'security/ir.model.access.csv',
 		'data/data.xml',
-
+		'wizard/date_report.xml'
 	],
 	'js': [
 	 '/primer_modulo/src/js/framework.js'

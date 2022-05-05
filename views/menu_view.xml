@@ -1,7 +1,20 @@
 <?xml version="1.0"  ?>
 <odoo>
+
+
+      <record id="action_view_date_report_wizard" model="ir.actions.act_window">
+            <field name="name">Report Between Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reporte</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+
+
     <!--    Contiene el menu principal de la App, por cada modelo definimos una accion y menu que aparece al seleccionar dicha accion-->
-<!--    DECLARAMOS RECOR PARA EL ACTION DEL SUBMENU "libros_action"-->
+<!--    DECLARAMOS RECORD PARA EL ACTION DEL SUBMENU "libros_action"-->
      <record id="libros_action" model="ir.actions.act_window">
         <field name="name">Libros</field>
          <!--NOMBRE DE ESTA ACCION-->
@@ -36,6 +49,11 @@
     <menuitem name="Autores" id="autores_menu" parent="libreria_menu" action="autores_action"/>
 
 
+        <menuitem
+                name="Report"
+                id="date_menu"
+                parent="libreria_menu"
+                action="action_view_date_report_wizard"/>
 
 </odoo>
 

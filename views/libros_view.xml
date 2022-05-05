@@ -135,6 +135,8 @@
                     </group>
                     <group name="group_medio">
                         <field name="name" widget="text"/>
+                        <field name="date"/>
+                        <field name="country_id"/>
                     </group>
                     <group>
                         <notebook>
@@ -239,6 +241,7 @@
                                     <div class="o_kanban_record_headings">
                                         <strong class="o_kanban_record_title oe_partner_heading">
                                             <field name="name"/>
+
                                         </strong>
                                     </div>
                                 </div>

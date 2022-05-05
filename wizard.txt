@@ -1,0 +1,9 @@
+CREAMOS WIZAR 
+1 Llamararlo en init.py de mi carpeta wizard y en el init.py del modulo
+2 Crear un objeto de tipo models.TransientModel esto permite que no se guarden las transacciones en odoo
+3 Colocart el archivo en el manifest 
+4 Dar le permiso de acceso al modelo creado 
+
+TIPOS DE REPORTE 
+<t t-call="web.html_container">
+                    <t t-call="web.external_layout">
