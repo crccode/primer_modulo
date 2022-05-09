@@ -266,3 +266,27 @@ class Libros(models.Model):
                 print('ESTA VACIO')
         except:
             print('ERROR!')
+
+    # BOTOM GEOLOCALIZATION
+    texto_geo = fields.Char(string="Texto Geo")
+    @api.model
+    def _geo_localize(self, street=''):
+        if street is None:
+            print('VACIO')
+        else:
+            print('API MODEL '+street)
+        result= street
+        return result
+
+    def geo_localize(self):
+        # We need country names in English below
+
+        result = self._geo_localize('hola street')
+        print(result)
+        for partner in self.with_context(lang='en_US'):
+            print(partner.date)
+            partner.write({
+                # 'texto_geo': 'fields.Date.context_today(partner)'
+                'texto_geo': fields.Date.context_today(partner)
+            })
+        return True

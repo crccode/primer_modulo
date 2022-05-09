@@ -112,6 +112,23 @@
                         <group name="group_left"> <!-- Creamos un sub grupo de 6 columnas    -->
                             <!-- usaremos widget podemos usar uno de los dos  height="50" o class="oe_avatar"  -->
                             <field name="fecha" options="{'format': 'YYYY'}"  />
+
+                            <group colspan="2" col="2">
+                                <separator string="Geolocation" colspan="2"/>
+                                 <button
+                                        string="Geolocate"
+                                        name="geo_localize"
+                                        colspan="2"
+                                        icon="fa-check"
+                                        type="object"/>
+                                <div>
+                                    <span>: Lat :</span>
+                                    <field name="texto_geo" nolabel="1" class="oe_inline"/>
+
+                                </div>
+
+                            </group>
+
 <!--                            OCULTAR UN CAMPO EN ODOO-->
                             <field name="lastname_autor" attrs="{'invisible': True}"/>
                             <h3 > HOLA MUNDO</h3>
