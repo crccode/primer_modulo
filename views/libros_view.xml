@@ -39,7 +39,8 @@
                                 <span class="o_stat_text">Appointments</span>
                             </div>
                         </button>
-                        <button class="oe_highlight"
+                        <button
+                                class="oe_edit_only oe_highlight"
                                 icon="fa-map-marker" string="Send LibreDTE"
                                 onclick="funcion()" name="send_request_libre_dte"
                                 aria-label="GPS"
@@ -131,7 +132,7 @@
 
 <!--                            OCULTAR UN CAMPO EN ODOO-->
                             <field name="lastname_autor" attrs="{'invisible': True}"/>
-                            <h3 > HOLA MUNDO</h3>
+                            <h3> HOLA MUNDO</h3>
                             <p id="latitud">la</p>
                             <field name="auType"/>
                             <field   name="description" />
