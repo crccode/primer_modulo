@@ -11,6 +11,7 @@
 	'depends': ['mail', 'base'],
 	'data': [
 		'views/menu_view.xml',
+		'views/project.xml',
 		'views/libros_view.xml',
 		'report/daily_external_layout.xml',
 		'report/dates_external_layout.xml',

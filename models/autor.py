@@ -77,3 +77,15 @@ class Autor(models.Model):
             if (len(str(rec.last_name)) != 9):
                 # raise ValidationError(('Numero no valido'))
                 raise UserError('Error')
+
+class Project(models.Model):
+    _inherit = 'libros'
+    # copy = FalsePara que cuando duplique un registro no trae la misma secuencia
+    name = fields.Char(copy=False, default='New', readonly=True)
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New')=='New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('task.1fpv') or 'New'
+            res = super(Project, self).create(vals)
+            return res

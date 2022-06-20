@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="sequence_project" model="ir.sequence">
+        <field name="name">Secuencia de tarea</field>
+
+        <field name="code">task.1fpv</field>
+        <field name="active">TRUE</field>
+        <field name="prefix">OS</field>
+        <field name="padding">5</field>
+        <field name="name">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+</odoo>
