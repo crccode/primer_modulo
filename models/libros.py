@@ -290,3 +290,10 @@ class Libros(models.Model):
                 'texto_geo': fields.Date.context_today(partner)
             })
         return True
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    impuesto_api_key = fields.Char(
+        string='Google Maps View Api Key',
+        config_parameter='web_google_maps.api_key')

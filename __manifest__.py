@@ -8,7 +8,7 @@
 	'application': True,
 	'version': '1.2',
 	# Instlamaos el modlo mail para tener registro de las modificaciones
-	'depends': ['mail', 'base'],
+	'depends': ['mail', 'base','base_setup'],
 	'data': [
 		'views/menu_view.xml',
 		'views/project.xml',
